@@ -17,18 +17,24 @@ import path from "path";
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+// import mdPlugin from 'vite-plugin-markdown';
+import { plugin as mdPlugin, Mode } from 'vite-plugin-markdown';
 
+console.log('mdPlugin', mdPlugin)
 export default defineConfig(async () => {
   const mdx = await import('@mdx-js/rollup')
   return {
     plugins: [
+      mdPlugin({
+        mode: [Mode.REACT]
+      }),
       react({
         jsxRuntime: 'automatic',
       }),
       mdx.default({
         jsxRuntime: 'automatic',
         providerImportSource: '@mdx-js/react'
-      })
+      }),
     ],
     resolve: {
       alias: {

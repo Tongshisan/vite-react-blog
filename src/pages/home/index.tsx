@@ -1,17 +1,27 @@
 import { FunctionComponent, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import avatar from '@/assets/imgs/avatar.jpeg';
 import expand from '@/assets/imgs/expand.png';
+import { routes } from './define';
 import styles from './index.module.scss';
 interface IHomeProps {
 
 }
 
+
+
 const Home: FunctionComponent<IHomeProps> = () => {
 
   const [isShowNav, setIsShowNav] = useState<boolean>(false);
 
+  const navigate = useNavigate();
+
   const handleExpandIconClick = () => {
     setIsShowNav((bool) => !bool)
+  }
+
+  const setRoute = (route: string): void => {
+    navigate(route)
   }
 
   return (
@@ -22,9 +32,11 @@ const Home: FunctionComponent<IHomeProps> = () => {
             <img src={avatar} alt="" />
           </div>
           <ul>
-            <li>主页</li>
-            <li>相册</li>
-            <li>博客</li>
+            {
+              routes.map((route: any) => (
+                <li onClick={() => setRoute(route.route)}>{route.name}</li>
+              ))
+            }
           </ul>
         </div>
         <div
