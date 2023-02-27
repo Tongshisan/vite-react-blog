@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Markdown, TopProgressBar } from '@/components';
+import { Markdown, TopProgressBar, Article } from '@/components';
 import Test from './test.mdx';
 // import ReactComponent from './test.md';
 // import { ReactComponent } from './test.md';
@@ -34,9 +34,9 @@ const md = `
 const MarkdownTest: FunctionComponent<MarkdownTestProps> = () => {
   return (
     // <Markdown markdown={md} />
-    <TopProgressBar>
+    <Article>
       <Test />
-    </TopProgressBar>
+    </Article>
     // <ReactComponent />
     // <div>null</div>
   );
