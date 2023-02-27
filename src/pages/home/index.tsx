@@ -28,7 +28,7 @@ const Home: FunctionComponent<IHomeProps> = () => {
     <div className={styles.wrap}>
       <nav className={`${styles.nav} ${isShowNav ? styles['show-nav'] : ''}`}>
         <div className={styles['nav-main']}>
-          <div className={styles['avator']}>
+          <div className={styles['avatar']}>
             <img src={avatar} alt="" />
           </div>
           <ul>
