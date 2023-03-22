@@ -1,0 +1,19 @@
+/* 值不能带 '' */
+body[theme="dark"] {
+  --lz-primary-color: '#1e80ff';
+  --lz-text-color: red;
+  --lz-text-hover-color: '';
+  --lz-background-color: '';
+  --lz-background-hover-color: '';
+  --lz-error-color: 'red';
+}
+
+body[theme='light'] {
+  --lz-primary-color: #1e80ff;
+  --lz-text-color: red;
+  --lz-text-hover-color: '';
+  --lz-background-color: '';
+  --lz-background-hover-color: '';
+  --lz-error-color: 'red';
+}
+

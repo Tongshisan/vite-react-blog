@@ -1,0 +1,18 @@
+:root[theme="dark"] {
+  --lz-primary-color: '#1e80ff';
+  --lz-text-color: '#fff';
+  --lz-text-hover-color: '';
+  --lz-background-color: '';
+  --lz-background-hover-color: '';
+  --lz-error-color: 'red';
+}
+
+:root[theme='light'] {
+  --lz-primary-color: '#1e80ff';
+  --lz-text-color: 'red';
+  --lz-text-hover-color: '';
+  --lz-background-color: '';
+  --lz-background-hover-color: '';
+  --lz-error-color: 'red';
+}
+
