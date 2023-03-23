@@ -1,1 +1,2 @@
-export { md } from './md';
+export { md } from './md-back';
+export { myPlugin } from './md';

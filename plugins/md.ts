@@ -1,67 +1,25 @@
-import path from 'path';
 import fs from 'fs';
-import { marked } from 'marked';
-import type { InlineConfig, Plugin, UserConfig } from 'vite'
 
+const fileRegex = /\.(md)$/
 
 const mdToJS = (str: string) => {
-  const content = JSON.stringify((marked(str)));
-  return `export default ${content}`
+  return `export const markdownStr = ${JSON.stringify(str)}`;
 }
 
-export const md = () => {
+export function myPlugin() {
   return {
-    name: 'md',
-    configureServer: [
-      async ({ app }) => {
-        app.use(async (ctx, next) => {
-          if (ctx.path.endWith('.md')) {
-            ctx.type = 'js';
-            const filePath = path.join(process.cwd(), ctx.path);
-            ctx.body = mdToJS(fs.readFileSync(filePath).toString())
-          } else {
-            await next()
-          }
-        })
+    name: 'test',
+    transform(src, id) {
+      if (fileRegex.test(id)) {
+        const str = fs.readFileSync(id).toString();
+        return {
+          code: mdToJS(str),
+          id: id.replace(fileRegex, '.js'),
+          map: null // 如果可行将提供 source map
+        }
       }
-    ],
-    transforms: [{
-      test: context => context.path.endWith('.md'),
-      transform: ({ code }) => mdToJS(code)
-    }]
+    }
   }
 }
 
 
-// md.ts
-// import marked from 'marked'
-// import path from 'path'
-// import fs from 'fs'
-
-// const mdToJs = (str) => {
-//   const content = JSON.stringify(marked(str))
-//   return `export default ${content}`
-// }
-
-// export function md() {
-//   return {
-//     configureServer: [
-//       async ({ app }) => {
-//         app.use(async (ctx, next) => {
-//           if (ctx.path.endsWith('.md')) {
-//             ctx.type = 'js'
-//             const filePath = path.join(process.cwd(), ctx.path)
-//             ctx.body = mdToJs(fs.readFileSync(filePath).toString())
-//           } else {
-//             await next()
-//           }
-//         })
-//       }],
-//     transforms: [
-//       {
-//         test: (context) => context.path.endsWith('.md'),
-//         transform: ({ code }) => mdToJs(code),
-//       },
-//     ],
-//   }
-// }

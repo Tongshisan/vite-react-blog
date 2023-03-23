@@ -19,5 +19,6 @@ declare module '*.md' {
   // const VueComponentWith: (components: Record<string, Component>) => ComponentOptions;
 
   // Modify below per your usage
-  export { attributes, toc, html, ReactComponent, };
+  const markdownStr: string;
+  export { attributes, toc, html, ReactComponent, markdownStr };
 }
